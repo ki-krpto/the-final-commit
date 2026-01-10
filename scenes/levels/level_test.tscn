@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://ddo5irvdn6ltc"]
+
+[ext_resource type="PackedScene" uid="uid://cyt5sn7l1v2d7" path="res://scenes/player.tscn" id="1_yluh8"]
+[ext_resource type="PackedScene" uid="uid://do0pl6tf27oip" path="res://scenes/console_ui.tscn" id="2_yluh8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4ptlp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ycf23"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uh3ll"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4lw2e"]
+material = SubResource("ShaderMaterial_uh3ll")
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bqmi1"]
+size = Vector3(20, 1, 20)
+
+[node name="Level_test" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.7621124, -0.62339526, -0.17482321, 0.5511235, 0.48292875, 0.6804725, -0.33977622, -0.61494553, 0.7116138, 1.4523201, 9.598236, 2.7709112)
+light_energy = 0.505
+light_indirect_energy = 9.997
+light_volumetric_fog_energy = 4.464
+light_angular_distance = 40.82
+light_specular = 0.835
+
+[node name="Floor" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_4ptlp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_ycf23")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_4lw2e")
+
+[node name="wall 1" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 1, 1, 1)
+physics_material_override = SubResource("PhysicsMaterial_4ptlp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall 1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 9, -1)
+shape = SubResource("BoxShape3D_bqmi1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="wall 1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.000002, 9, -1)
+mesh = SubResource("BoxMesh_4lw2e")
+
+[node name="wall 2" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -10, 10.000001, 0)
+physics_material_override = SubResource("PhysicsMaterial_4ptlp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall 2"]
+shape = SubResource("BoxShape3D_bqmi1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="wall 2"]
+mesh = SubResource("BoxMesh_4lw2e")
+
+[node name="wall 3" type="StaticBody3D" parent="."]
+transform = Transform3D(0, -4.371139e-08, -1, -1, -4.3711385e-08, 0, -4.371139e-08, 1, -4.371139e-08, 0, 10.000002, -10)
+physics_material_override = SubResource("PhysicsMaterial_4ptlp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall 3"]
+shape = SubResource("BoxShape3D_bqmi1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="wall 3"]
+mesh = SubResource("BoxMesh_4lw2e")
+
+[node name="wall 4" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 1.3113416e-07, -4.3711395e-08, 4.3711385e-08, 4.3711392e-08, 1, 1.3113417e-07, -1, 4.3711385e-08, 0, 10.000002, 10.000002)
+physics_material_override = SubResource("PhysicsMaterial_4ptlp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wall 4"]
+shape = SubResource("BoxShape3D_bqmi1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="wall 4"]
+mesh = SubResource("BoxMesh_4lw2e")
+skeleton = NodePath("../../wall 4")
+
+[node name="ceiling" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 1.3113416e-07, -4.3711395e-08, 1.3113417e-07, -1, -3.5527137e-15, -4.3711395e-08, -3.5527137e-15, -1, 0, 20.000002, 1.9073486e-06)
+physics_material_override = SubResource("PhysicsMaterial_4ptlp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ceiling"]
+shape = SubResource("BoxShape3D_bqmi1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ceiling"]
+mesh = SubResource("BoxMesh_4lw2e")
+
+[node name="Player" parent="." instance=ExtResource("1_yluh8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="ConsoleUI" parent="." instance=ExtResource("2_yluh8")]
