@@ -60,3 +60,4 @@ toggle_console={
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
+occlusion_culling/use_occlusion_culling=true
